@@ -67,8 +67,9 @@ public class iosConnectionListener implements Runnable{
                 System.out.println("User check:"+userCheck);
                 
                 //Begin sending activities to client
-                if (userCheck.equals("{\"user_type\":\"user\"}")){
+                if (userCheck.contains("user")){
                     //Establishing input and output stream
+                    System.out.println("Adding moderator");
                     sender.addModerator(out);
                 }
                 
