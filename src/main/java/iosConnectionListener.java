@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -50,8 +51,8 @@ public class iosConnectionListener implements Runnable{
                 System.out.println("Connected to client: "+clientSocket.toString());
                 System.out.println("Getting in and out stream");
 
-                ObjectOutputStream out = new ObjectOutputStream(
-                    clientSocket.getOutputStream());
+                PrintWriter out =
+                    new PrintWriter(clientSocket.getOutputStream());
 
                 System.out.println("Got out buffer");
 

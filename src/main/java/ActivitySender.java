@@ -1,5 +1,6 @@
 
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -15,7 +16,7 @@ import java.util.Hashtable;
  */
 public class ActivitySender implements Runnable{
     private final ArrayList<String> activityQueue;
-    private final ArrayList<ObjectOutputStream> moderatorOutArr;
+    private final ArrayList<PrintWriter> moderatorOutArr;
 
     public ActivitySender(){
         activityQueue = new ArrayList<>();
@@ -26,11 +27,11 @@ public class ActivitySender implements Runnable{
         activityQueue.add(activityQueue.size(), activity);
     }
 
-    public void addModerator(ObjectOutputStream o){
+    public void addModerator(PrintWriter o){
         moderatorOutArr.add(o);
     }
     
-    public void removeModerator(ObjectOutputStream o){
+    public void removeModerator(PrintWriter o){
         moderatorOutArr.remove(o);
     }
     
@@ -54,9 +55,10 @@ public class ActivitySender implements Runnable{
                 System.out.println("ChatRoomServerNetwork received activity and dequeued.");
                 
                 //Broadcast activity to all moderators
-                for (ObjectOutputStream out: moderatorOutArr){
+                for (PrintWriter out: moderatorOutArr){
                     try{
-                        out.writeObject(inActivity);
+                        out.append(inActivity);
+                        out.flush();
 
                     }
                         catch(Exception e){
