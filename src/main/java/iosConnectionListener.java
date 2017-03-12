@@ -62,7 +62,6 @@ public class iosConnectionListener implements Runnable{
                     new InputStreamReader(clientSocket.getInputStream()));
                 
                 while(true){
-                    System.out.println("Waiting for input");
                     String str;
                     if (in.ready() && (str = in.readLine()) != null){
                         
