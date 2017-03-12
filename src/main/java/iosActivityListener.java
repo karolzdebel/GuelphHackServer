@@ -39,7 +39,7 @@ public class iosActivityListener implements Runnable{
                 System.out.println("ActivityListener() receviced message: "+msg);
                 
                 synchronized(sender){
-                    sender.addActivityToQueue(msg);
+                    sender.addActivityToQueue(msg+"\n");
                     sender.notify();
                 }
             }
