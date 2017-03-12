@@ -63,9 +63,9 @@ public class iosConnectionListener implements Runnable{
                 
                 while(true){
                     String str = in.readLine();
+                    System.out.print("Received string "+str);
                 }
                 System.out.println("Established input and output streams successfully.");
-                System.out.print("Received string "+str);
                 
                 
                 
