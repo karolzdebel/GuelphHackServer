@@ -39,14 +39,22 @@ public class iosConnectionListener implements Runnable{
     public void run() {
         while(true){
             try{
+                
+                System.out.println("Server listening for connections");
+                    
                 //Listen for incoming connections
                 Socket clientSocket = serverSocket.accept();
+
+                System.out.println("Connected to client: "+clientSocket.toString());
+                System.out.println("Getting in and out stream");
 
                 //Establishing input and output stream
                 ObjectOutputStream out = new ObjectOutputStream(
                 clientSocket.getOutputStream());
                 ObjectInputStream in = new ObjectInputStream(
                 clientSocket.getInputStream());   
+                
+                System.out.println("Established input and output streams successfully.");
 
                 //Begin sending activities to client
                 sender.addModerator(out);

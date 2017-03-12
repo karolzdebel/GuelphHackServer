@@ -20,6 +20,12 @@ public class iosActivityListener implements Runnable{
         this.sender = sender;
     }
 
+    //Parse JSON formatted string and return data in UserActivity object
+    public UserActivity strToActivity(String json){
+        
+        return null;
+    }
+    
     @Override
     public void run() {
         try{
@@ -27,12 +33,18 @@ public class iosActivityListener implements Runnable{
             //Keep listening to object input stream for user input
             while(true){
                 
+                System.out.println("ActivityListener() listening for input from user");
+
                 //blocks here till object is sent
-                UserActivity inActivity = (UserActivity)in.readObject();
-                synchronized(sender){
-                    sender.addActivityToQueue(inActivity);
-                    sender.notify();
-                }
+                String msg = (String)in.readObject();
+                
+                System.out.println("ActivityListener() receviced message: "+msg);
+
+                
+//                synchronized(sender){
+//                    sender.addActivityToQueue(inActivity);
+//                    sender.notify();
+//                }
             }
         }
         catch(Exception e){
