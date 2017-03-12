@@ -12,15 +12,14 @@ import java.util.Date;
  *
  * @author karol
  */
-public class Message implements Serializable{
+public class Message extends UserActivity implements Serializable{
     private String content;
-    private User author;
     private Date date;
     private String chatroom;
     
     public Message(String content, User author, Date date, String chatroom){
+        super(author);
         this.content = content;
-        this.author = author;
         this.date = date;
         this.chatroom = chatroom;
     }

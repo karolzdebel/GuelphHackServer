@@ -11,10 +11,9 @@ import java.io.Serializable;
  *
  * @author karol
  */
-public class Flag implements Serializable{
+public class Flag extends UserActivity implements Serializable{
     
-    
-    public Flag(){
-        super();
+    public Flag(User user){
+        super(user);
     }
 }
