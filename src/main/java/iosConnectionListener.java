@@ -55,10 +55,8 @@ public class iosConnectionListener implements Runnable{
                  clientSocket.getOutputStream());
 
                 //get input from iOS side
-//                BufferedReader in = new BufferedReader(
-//                    new InputStreamReader(clientSocket.getInputStream()));
-                ObjectInputStream in = new ObjectInputStream(
-                     clientSocket.getInputStream());
+                BufferedReader in = new BufferedReader(
+                    new InputStreamReader(clientSocket.getInputStream()));
                 
                 //Begin sending activities to client
                 sender.addModerator(out);

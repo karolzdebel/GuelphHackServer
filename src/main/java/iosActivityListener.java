@@ -15,10 +15,10 @@ import java.util.Date;
  */
 public class iosActivityListener implements Runnable{
     
-    private ObjectInputStream in;
+    private BufferedReader in;
     private final ActivitySender sender;
     
-    public iosActivityListener(ObjectInputStream in, ActivitySender sender){
+    public iosActivityListener(BufferedReader in, ActivitySender sender){
         this.sender = sender;
         this.in = in;
     }
@@ -32,11 +32,13 @@ public class iosActivityListener implements Runnable{
                 
                 System.out.println("ActivityListener() listening for input from user");
             
-                String msg = (String)in.readObject();
+                String msg = null;
                 //Block till input is sent
-                
+                while ((msg = in.readLine()) == null) {
+                }
                 System.out.println("ActivityListener() receviced message: "+msg);
 
+                
                 synchronized(sender){
                     sender.addActivityToQueue(msg);
                     sender.notify();
