@@ -53,9 +53,13 @@ public class iosConnectionListener implements Runnable{
                 ObjectOutputStream out = new ObjectOutputStream(
                     clientSocket.getOutputStream());
 
+                System.out.println("Got out buffer");
+
                 //get input from iOS side
                 BufferedReader in = new BufferedReader(
                     new InputStreamReader(clientSocket.getInputStream()));
+                
+                System.out.println("Got in buffer");
                 
                 //Check whether user or moderator
                 String userCheck = in.readLine();
