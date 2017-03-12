@@ -34,9 +34,8 @@ public class iosActivityListener implements Runnable{
             
                 String msg = null;
                 //Block till input is sent
-                if (in.ready()){
-                    msg = (String)in.readLine();
-                }
+                 while ((msg = in.readLine()) != null) {
+                 }
                 System.out.println("ActivityListener() receviced message: "+msg);
 
                 
