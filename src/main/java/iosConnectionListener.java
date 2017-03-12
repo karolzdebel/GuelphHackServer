@@ -63,8 +63,10 @@ public class iosConnectionListener implements Runnable{
                 
                 while(true){
                     System.out.println("Waiting for input");
-                    String str = in.readLine();
-                    System.out.println("Received string "+str);
+                    if (in.ready()){
+                        String str = in.readLine();
+                        System.out.println("Received string "+str);
+                    }
                 }
                 
                 
