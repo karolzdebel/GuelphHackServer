@@ -1,5 +1,6 @@
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -55,11 +56,17 @@ public class iosConnectionListener implements Runnable{
 //                BufferedReader in =
 //                    new BufferedReader(
 //                    new InputStreamReader(clientSocket.getInputStream()));
-                ObjectInputStream in = new ObjectInputStream(
-                    clientSocket.getInputStream());   
-                String str = (String)in.readObject();
+//                ObjectInputStream in = new ObjectInputStream(
+//                    clientSocket.getInputStream());   
+                BufferedReader in = new BufferedReader(
+                    new InputStreamReader(clientSocket.getInputStream()));
+
+
+                String str = in.readLine();
                 System.out.println("Established input and output streams successfully.");
                 System.out.print("Received string "+str);
+                
+                
                 
 //
 //                //Begin sending activities to client
