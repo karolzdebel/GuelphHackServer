@@ -52,13 +52,15 @@ public class iosConnectionListener implements Runnable{
 
                 ObjectOutputStream out = new ObjectOutputStream(
                     clientSocket.getOutputStream());
-                
+
                 //get input from iOS side
                 BufferedReader in = new BufferedReader(
                     new InputStreamReader(clientSocket.getInputStream()));
                 
                 //Check whether user or moderator
                 String userCheck = in.readLine();
+                
+                System.out.println("User check:"+userCheck);
                 
                 //Begin sending activities to client
                 if (userCheck.equals("{\"user_type\":\"user\"}")){
