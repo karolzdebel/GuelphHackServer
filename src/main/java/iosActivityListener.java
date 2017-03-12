@@ -20,6 +20,7 @@ public class iosActivityListener implements Runnable{
     
     public iosActivityListener(BufferedReader in, ActivitySender sender){
         this.sender = sender;
+        this.in = in;
     }
     
     @Override
