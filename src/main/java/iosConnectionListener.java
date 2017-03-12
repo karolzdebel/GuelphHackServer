@@ -50,6 +50,9 @@ public class iosConnectionListener implements Runnable{
                 System.out.println("Connected to client: "+clientSocket.toString());
                 System.out.println("Getting in and out stream");
 
+                ObjectOutputStream out = new ObjectOutputStream(
+                    clientSocket.getOutputStream());
+                
                 //get input from iOS side
                 BufferedReader in = new BufferedReader(
                     new InputStreamReader(clientSocket.getInputStream()));
@@ -60,15 +63,13 @@ public class iosConnectionListener implements Runnable{
                 //Begin sending activities to client
                 if (userCheck.equals("{\"user_type\":\"user\"}")){
                     //Establishing input and output stream
-                    ObjectOutputStream out = new ObjectOutputStream(
-                    clientSocket.getOutputStream());
                     sender.addModerator(out);
                 }
                 
                 //Create thread to listen to client activity
                 iosActivityListener listener = new iosActivityListener(in,sender);
                 (new Thread(listener)).start();
-
+                
 
             }catch(Exception e){
                 e.printStackTrace();
