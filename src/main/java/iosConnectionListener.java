@@ -60,9 +60,10 @@ public class iosConnectionListener implements Runnable{
 //                    clientSocket.getInputStream());   
                 BufferedReader in = new BufferedReader(
                     new InputStreamReader(clientSocket.getInputStream()));
-
-
-                String str = in.readLine();
+                
+                while(true){
+                    String str = in.readLine();
+                }
                 System.out.println("Established input and output streams successfully.");
                 System.out.print("Received string "+str);
                 
