@@ -52,7 +52,7 @@ public class iosConnectionListener implements Runnable{
 
                 //Establishing input and output stream
                 ObjectOutputStream out = new ObjectOutputStream(
-                clientSocket.getOutputStream());
+                 clientSocket.getOutputStream());
 
                 //get input from iOS side
                 BufferedReader in = new BufferedReader(

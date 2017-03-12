@@ -14,7 +14,7 @@ import java.util.Hashtable;
  * @author karol
  */
 public class ActivitySender implements Runnable{
-    private final ArrayList<UserActivity> activityQueue;
+    private final ArrayList<String> activityQueue;
     private final ArrayList<ObjectOutputStream> moderatorOutArr;
 
     public ActivitySender(){
@@ -22,7 +22,7 @@ public class ActivitySender implements Runnable{
         moderatorOutArr = new ArrayList<>();
     }
     
-    public void addActivityToQueue(UserActivity activity){
+    public void addActivityToQueue(String activity){
         activityQueue.add(activityQueue.size(), activity);
     }
 
@@ -49,7 +49,7 @@ public class ActivitySender implements Runnable{
                 }
                 
                 //Dequeue first activity
-                UserActivity inActivity = activityQueue.get(0);
+                String inActivity = activityQueue.get(0);
                 activityQueue.remove(0);
                 System.out.println("ChatRoomServerNetwork received activity and dequeued.");
                 

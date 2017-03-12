@@ -1,5 +1,4 @@
 
-import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.ObjectInputStream;
 import java.util.Date;
@@ -23,38 +22,6 @@ public class iosActivityListener implements Runnable{
         this.sender = sender;
     }
     
-    private class GsonMessage{
-        String channel_name;
-        String user_id;
-        String message;
-        String flag;
-        String time;
-    }
-    
-    //Parse JSON formatted string and return data in UserActivity object
-    public UserActivity strToActivity(String json){
-        
-        Gson gson = new Gson();
-        
-        GsonMessage gsonMessage;
-        gsonMessage = gson.fromJson(json, GsonMessage.class);
-        
-        if (gsonMessage.flag.equals("true")){
-            Flag flag = new Flag(new User(gsonMessage.user_id,gsonMessage.channel_name));
-            return flag;
-            
-        }
-        else{
-            Date date = new Date(gsonMessage.time);
-            System.out.println("Date: "+date.toString());
-            Message message = new Message(gsonMessage.message
-                    , new User(gsonMessage.user_id,gsonMessage.channel_name)
-                    , date, gsonMessage.channel_name);
-            return message;
-        }
-        
-    }
-    
     @Override
     public void run() {
         try{
@@ -73,7 +40,7 @@ public class iosActivityListener implements Runnable{
 
                 
                 synchronized(sender){
-                    sender.addActivityToQueue(strToActivity(msg));
+                    sender.addActivityToQueue(msg);
                     sender.notify();
                 }
             }
