@@ -72,6 +72,9 @@ public class iosConnectionListener implements Runnable{
                     System.out.println("Adding moderator");
                     sender.addModerator(out);
                 }
+                else{
+                    System.out.println("not adding moderator");
+                }
                 
                 //Create thread to listen to client activity
                 iosActivityListener listener = new iosActivityListener(in,sender);

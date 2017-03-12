@@ -32,12 +32,23 @@ public class iosActivityListener implements Runnable{
                 
                 System.out.println("ActivityListener() listening for input from user");
             
-                String msg = null;
+                String msg = "";
                 //Block till input is sent
-                while ((msg = in.readLine()) == null) {
+                char c;
+                while (in.ready()) {
+                    c = (char)in.read();
+                    msg += c;
+                    int counterCounter = 0;
+                    if (c == '\n'){
+                        counterCounter++;
+                        if (counterCounter == 5){
+                            break;
+                        }
+                    }
                 }
                 System.out.println("ActivityListener() receviced message: "+msg);
 
+                
                 
                 synchronized(sender){
                     sender.addActivityToQueue(msg);
