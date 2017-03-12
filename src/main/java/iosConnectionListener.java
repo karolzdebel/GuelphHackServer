@@ -46,7 +46,7 @@ public class iosConnectionListener implements Runnable{
                     
                 //Listen for incoming connections
                 Socket clientSocket = serverSocket.accept();
-
+                    
                 System.out.println("Connected to client: "+clientSocket.toString());
                 System.out.println("Getting in and out stream");
 
@@ -58,8 +58,13 @@ public class iosConnectionListener implements Runnable{
                 BufferedReader in = new BufferedReader(
                     new InputStreamReader(clientSocket.getInputStream()));
                 
+                //Check whether user or moderator
+                String userCheck = in.readLine();
+                
                 //Begin sending activities to client
-                sender.addModerator(out);
+                if (userCheck.equals("{\"user_type\":\"user\"}")){
+                    sender.addModerator(out);
+                }
                 
                 //Create thread to listen to client activity
                 iosActivityListener listener = new iosActivityListener(in,sender);
