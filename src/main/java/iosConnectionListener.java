@@ -25,7 +25,7 @@ public class iosConnectionListener implements Runnable{
         
         //Create server socket
         try{
-            serverSocket = new ServerSocket(45201);
+            serverSocket = new ServerSocket(45202);
         }catch(Exception e){
             System.err.print(e.getMessage());
             serverSocket = null;
