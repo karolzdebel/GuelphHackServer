@@ -4,7 +4,7 @@ import urllib
 import socket
 
 s = socket.socket()
-s.bind(("localhost",42069))
+s.bind((socket.gethostname(),42069))
 s.listen(15)
 
 while True:
@@ -24,5 +24,3 @@ while True:
 	c.send(res.json)
 
 	c.close()
-
-print(res.text)
